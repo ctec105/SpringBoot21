@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="www.//thymeleaf.org">
+<head th:replace="layouts/base-layout :: head"></head>
+
+<body>
+
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+				<div th:if="${param.error}" class="alert alert-danger mb-3">
+					Credenciales incorrectas
+				</div>
+				
+				<div class="card mt-5">
+					<div class="card-header text-center">Iniciar Sesión</div>
+					<div class="card-body">
+						<form action="#" th:action="@{/auth/login-post}" th:object="${usuario}" method="post">
+							<div class="row form-group">
+								<label class="col-md-3">Username</label>
+								<input type="text" class="form-control col-md-8" th:field="*{username}" th:errorclass="'form-control alert-danger'"/>
+								<small class="form-text text-danger offset-3" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></small>
+							</div>
+							
+							<div class="row form-group">
+								<label class="col-md-3">Password</label>
+								<input type="password" class="form-control col-md-8" th:field="*{password}" th:errorclass="'form-control alert-danger'"/>
+								<small class="form-text text-danger offset-3" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+							</div>
+						
+							<div class="row form-group">
+								<button type="submit" class="btn btn-success col-md-8 offset-3 mt-3">Guardar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
